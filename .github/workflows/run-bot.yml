@@ -1,0 +1,25 @@
+name: McDonald's Bot
+
+on:
+  # Erlaubt den manuellen Start über den "Run workflow"-Button
+  workflow_dispatch:
+  # Optional: Automatischer Start zu bestimmten Zeiten (Cronjob)
+  # schedule:
+  #   - cron: '0 */6 * * alle 6 Stunden'
+
+jobs:
+  run-script:
+  # Nutzt einen kostenlosen Linux-Server von GitHub
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Skript ausführen
+        run: node bot.js
